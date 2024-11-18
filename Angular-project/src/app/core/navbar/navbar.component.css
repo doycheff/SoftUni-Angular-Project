@@ -1,0 +1,40 @@
+.email {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    background: linear-gradient(135deg, #afafaf 0%, #8b8b8b 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: inline-block;
+}
+
+.menuContainer {
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+}
+
+.menuItem {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.menuItem:hover {
+    background: #c5e7f2;
+    color: #ffffff;
+    border-radius: 0.5rem;
+}
+
+/* .bg-gray-800{
+    background-color: rgb(154 126 97);
+} */

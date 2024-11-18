@@ -1,0 +1,66 @@
+<header style="background-color: rgb(154, 126, 97)">
+    <div class="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+        <!-- Logo Section -->
+        <div class="flex-shrink-0 h-12 flex items-center">
+            <img src='books.png' alt="Your Company"
+                class="h-10 rounded-md" />
+        </div>
+
+        <!-- Navigation Section -->
+        <nav class="flex flex-1 justify-center">
+            <div class="flex space-x-4">
+                <a routerLink="#" class="rounded-md bg-gray-900 px-3 py-2 text-lg font-medium text-white"
+                    aria-current="page">Home</a>
+                <a routerLink="#"
+                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Books</a>
+                <a routerLink="#"
+                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Create
+                    a book</a>
+                <a routerLink="#"
+                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search</a>
+            </div>
+        </nav>
+
+        <!-- Profile Dropdown Section -->
+        <div class="relative ml-3">
+            <!-- Dropdown using <details> -->
+            <details class="relative group">
+                <summary
+                    class="flex cursor-pointer items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <span class="sr-only">Open user menu</span>
+                    <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="User Avatar"
+                        class="h-8 w-8 rounded-full" />
+                </summary>
+
+                <!-- Menu Items -->
+                <div
+                    class="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
+                    <!-- Authenticated Menu -->
+                    <div class="text-center">
+                        <span class="block px-4 py-2 text-sm font-medium text-gray-900">
+                            {{'user@example.com'}}
+                        </span>
+                        <a routerLink="/myProfile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            My Profile
+                        </a>
+                        <a routerLink="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Logout
+                        </a>
+                    </div>
+
+                    <!-- Non-Authenticated Menu -->
+                    <div class="text-center">
+                        <a routerLink="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Login
+                        </a>
+                        <a routerLink="/register" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            Register
+                        </a>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+
+    </div>
+</header>
