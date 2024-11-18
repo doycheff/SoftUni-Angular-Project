@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { LatestProductComponent } from "./latest-product/latest-product.component";
 import { RouterLink } from '@angular/router';
+import { LatestBookComponent } from "./latest-book/latest-book.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, LatestProductComponent],
+  imports: [RouterLink, LatestBookComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

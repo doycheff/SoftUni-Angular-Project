@@ -1,25 +1,31 @@
 <header style="background-color: rgb(154, 126, 97)">
     <div class="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-        <!-- Logo Section -->
         <div class="flex-shrink-0 h-12 flex items-center">
-            <img src='books.png' alt="Your Company"
-                class="h-10 rounded-md" />
+            <img src='books.png' alt="Your Company" class="h-10 rounded-md" />
         </div>
 
         <!-- Navigation Section -->
         <nav class="flex flex-1 justify-center">
             <div class="flex space-x-4">
-                <a routerLink="#" class="rounded-md bg-gray-900 px-3 py-2 text-lg font-medium text-white"
-                    aria-current="page">Home</a>
-                <a routerLink="#"
-                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Books</a>
-                <a routerLink="#"
-                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Create
-                    a book</a>
-                <a routerLink="#"
-                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search</a>
+                <a routerLink="/home" routerLinkActive="bg-yellow-900 text-white"
+                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-yellow-700 hover:text-white">
+                    Home
+                </a>
+                <a routerLink="/books" routerLinkActive="bg-yellow-900 text-white"
+                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-yellow-700 hover:text-white">
+                    Books
+                </a>
+                <a routerLink="/create-book" routerLinkActive="bg-yellow-900 text-white"
+                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-yellow-700 hover:text-white">
+                    Create a Book
+                </a>
+                <a routerLink="/search" routerLinkActive="bg-yellow-900 text-white"
+                    class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-yellow-700 hover:text-white">
+                    Search
+                </a>
             </div>
         </nav>
+
 
         <!-- Profile Dropdown Section -->
         <div class="relative ml-3">
