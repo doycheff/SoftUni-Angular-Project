@@ -1,22 +1,22 @@
-<div class="flex items-center justify-center min-h-screen">
-    <form onSubmit={submitHandler} class="w-full max-w-lg bg-gray-200 p-8 rounded-lg">
+<div class=" flex items-center justify-center min-h-screen">
+    <form style="background-color: antiquewhite;" class="w-full max-w-lg bg-gray-200 p-8 rounded-lg">
         <div class="grid gap-6 mb-6">
             <div>
-                <label htmlFor="name" class="block mb-2 text-sm font-medium text-gray-900">
-                    Name
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900">
+                    Title
                 </label>
-                <input type="text" id="name" name="name"
+                <input type="text" id="title" name="title"
                     class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={changeHandler} />
+                    #inputTitle />
 
             </div>
             <div>
-                <label htmlFor="category" class="block mb-2 text-sm font-medium text-gray-900">
+                <label for="genre" class="block mb-2 text-sm font-medium text-gray-900">
                     Genre
                 </label>
                 <select id="genre" name="genre"
                     class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    onChange={changeHandler}>
+                    #inputGenre>
                     <option value="">Select Genre</option>
                     <option value="Fantasy">Fantasy</option>
                     <option value="Mystery">Mystery</option>
@@ -27,36 +27,37 @@
                 </select>
             </div>
             <div class="relative">
-                <label htmlFor="price" class="block mb-2 text-sm font-medium text-gray-900">
+                <label for="price" class="block mb-2 text-sm font-medium text-gray-900">
                     Price
                 </label>
                 <input type="number" id="price" name="price"
                     class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    value={values.price} onChange={changeHandler} />
+                    #inputPrice />
 
             </div>
             <div>
-                <label htmlFor="description" class="block mb-2 text-sm font-medium text-gray-900">
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-900">
                     Description
                 </label>
                 <textarea id="description" name="description"
                     class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    value={values.description} onChange={changeHandler}>
+                    #inputDesc>
                 </textarea>
             </div>
             <div>
-                <label class="block mb-2 text-sm font-medium text-gray-900" htmlFor="image">
+                <label class="block mb-2 text-sm font-medium text-gray-900" for="image">
                     Image URL
                 </label>
                 <input
                     class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    id="image" type="text" name="image" onChange={changeHandler} />
+                    id="image" type="text" name="image" #inputImageUrl />
 
             </div>
         </div>
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button
+                (click)="addBook($event, inputTitle.value, inputGenre.value, inputPrice.value, inputDesc.value, inputImageUrl.value)"
+                class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-transform transform hover:scale-105">
                 Create
             </button>
         </div>
