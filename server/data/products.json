@@ -1,0 +1,26 @@
+{
+    "eb9823ab-c3e8-4a14-b998-8c22ec246bd3": {
+        "_id": "eb9823ab-c3e8-4a14-b998-8c22ec246bd3",
+        "name": "Apple MacBook Pro 16",
+        "description": "Powerful and portable laptop featuring a stunning 16-inch Retina display, advanced graphics, and high-performance processors for professionals and creatives.",
+        "price": "2.399",
+        "category": "Laptop",
+        "image": "https://istyle.bg/media/catalog/product/cache/image/e9c3970ab036de70892d86c6d221abfe/m/a/macbook_pro_16_in_m3_pro_max_space_black_pdp_image_position-1__en-us_3_3_3.jpg"
+    },
+    "ec9823ab-c3e8-4a14-b998-8c22ec246bd3": {
+        "_id": "ec9823ab-c3e8-4a14-b998-8c22ec246bd3",
+        "name": "Apple MacBook Air 15",
+        "description": "Ultra-portable and powerful laptop with a sleek 15-inch Retina display, efficient integrated graphics, and fast processors, ideal for everyday use and productivity.",
+        "price": "2.399",
+        "category": "Laptop",
+        "image": "https://cdn.ozone.bg/media/catalog/product/cache/1/image/400x498/a4e40ebdc3e371adff845072e1c73f37/l/a/1f9d17aabe7daf4035f879a38683db84/laptop-apple---macbook-air-15--153----m3-8-10--8gb-256gb--sin-30.jpg"
+    },
+    "ed9823ab-c3e8-4a14-b998-8c22ec246bd3": {
+        "_id": "ed9823ab-c3e8-4a14-b998-8c22ec246bd3",
+        "name": "Samsung Galaxy Fold 6",
+        "description": "Innovative foldable smartphone with a large, flexible display that unfolds to reveal a tablet-like experience. Packed with advanced features and powerful performance for multitasking and entertainment.",
+        "price": "2,199",
+        "category": "Smartphone",
+        "image": "https://www.citytel.bg/uploads/com_article/gallery/acbb384b0ceac9d32ecf06726ab7ba91d48192d3.jpg"
+    }
+}

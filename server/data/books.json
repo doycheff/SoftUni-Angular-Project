@@ -1,0 +1,32 @@
+{
+    "29de9b1b-3882-4cfd-a9ae-2f14111c15a4": {
+        "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        "title": "Harry Potter and the Sorcerer's Stone",
+        "genre": "Fantasy",
+        "price": "25.99",
+        "description": "An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.",
+        "image": "https://heightsforum.org/app/uploads/2019/03/review_harry-potter-series.jpg",
+        "_createdOn": 1722511724843,
+        "_id": "29de9b1b-3882-4cfd-a9ae-2f14111c15a4"
+    },
+    "88f39621-f62d-4829-8b8e-10a3437779db": {
+        "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        "title": "Harry Potter and the Chamber of Secrets",
+        "genre": "Fantasy",
+        "price": "20.99",
+        "description": "Back at Hogwarts School of Witchcraft and Wizardry for his second year, Harry hears strange whispers echo through empty corridors – and then the attacks start.",
+        "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS9YdjBRa9lsjU7vyJ6LsJQBtYWhAjlAbr4Iu1umvEii93B3Lph",
+        "_createdOn": 1722511664497,
+        "_id": "88f39621-f62d-4829-8b8e-10a3437779db"
+    },
+    "cabf498a-6b0b-4e36-ba42-2b1f2e8be2db": {
+        "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+        "title": "Harry Potter and the Prisoner of Azkaban",
+        "genre": "Fantasy",
+        "price": "22.22",
+        "description": "Ron Weasley, who was one of Harry's best friends at Hogwarts, came from a whole family of wizards. This meant that he knew a lot of things Harry didn't.",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQIgOhWIj2nAjAgNYvlThufK_RVM7r56pVxQCYBXOABDPA4i6_",
+        "_createdOn": 1722952104945,
+        "_id": "cabf498a-6b0b-4e36-ba42-2b1f2e8be2db"
+    }
+}
