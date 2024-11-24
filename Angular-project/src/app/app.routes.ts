@@ -6,6 +6,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { BooksListComponent } from './book/books-list/books-list.component';
 import { CreateBookComponent } from './book/create-book/create-book.component';
 import { BookDetailsComponent } from './book/book-details/book-details.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,7 +18,8 @@ export const routes: Routes = [
 
     { path: 'books', component: BooksListComponent },
     { path: 'create-book', component: CreateBookComponent },
-    { path: 'books/details', component: BookDetailsComponent },
+    { path: 'books/:id', component: BookDetailsComponent },
+    { path: 'search', component: SearchComponent },
 
 
     { path: '404', component: ErrorComponent },

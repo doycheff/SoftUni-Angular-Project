@@ -4,12 +4,12 @@ import { NavbarComponent } from "./core/navbar/navbar.component";
 import { FooterComponent } from "./core/footer/footer.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    imports: [RouterOutlet, NavbarComponent, FooterComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Angular-project';
+    title = 'Angular-project';
 }
