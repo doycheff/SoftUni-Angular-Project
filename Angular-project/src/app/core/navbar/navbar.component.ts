@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { UserService } from '../../user/user.service';
 
 @Component({
     selector: 'app-navbar',
@@ -16,4 +17,22 @@ export class NavbarComponent {
         { name: 'Search', href: '/search' }
     ];
 
+    constructor(private userService: UserService, private router: Router) { }
+
+    get isLoggedIn(): boolean {
+        return this.userService.isLogged;
+    }
+
+    getEmail(): string {
+        return this.userService.user?.email || '';
+    }
+
+    logout() {
+        this.userService.logout();
+        this.router.navigate(['/home']);
+    }
+
+    closeMenu(menu: HTMLDetailsElement): void {
+        menu.open = false;
+    }
 }

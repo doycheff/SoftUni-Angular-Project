@@ -15,10 +15,12 @@
                     class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-yellow-700 hover:text-white">
                     Books
                 </a>
+                @if (isLoggedIn) {
                 <a routerLink="/create-book" routerLinkActive="bg-yellow-900 text-white"
                     class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-yellow-700 hover:text-white">
                     Create a Book
                 </a>
+                }
                 <a routerLink="/search" routerLinkActive="bg-yellow-900 text-white"
                     class="rounded-md px-3 py-2 text-lg font-medium text-gray-300 hover:bg-yellow-700 hover:text-white">
                     Search
@@ -30,39 +32,46 @@
         <!-- Profile Dropdown Section -->
         <div class="relative ml-3">
             <!-- Dropdown using <details> -->
-            <details class="relative group">
+            <details class="relative group" #userMenu>
                 <summary
-                    class="flex cursor-pointer items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    class="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <span class="absolute -inset-1.5"></span>
                     <span class="sr-only">Open user menu</span>
-                    <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="User Avatar"
-                        class="h-8 w-8 rounded-full" />
+                    <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" class="h-8 w-8 rounded-full" />
                 </summary>
 
                 <!-- Menu Items -->
                 <div
-                    class="absolute right-0 mt-2 w-40 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
-                    <!-- Authenticated Menu -->
-                    <div class="text-center">
-                        <span class="block px-4 py-2 text-sm font-medium text-gray-900">
-                            {{'user@example.com'}}
-                        </span>
-                        <a routerLink="/myProfile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            My Profile
-                        </a>
-                        <a routerLink="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Logout
-                        </a>
-                    </div>
+                    class="absolute right-0 mt-2 w-44 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
+                    @if (isLoggedIn) {
 
-                    <!-- Non-Authenticated Menu -->
                     <div class="text-center">
-                        <a routerLink="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Login
-                        </a>
-                        <a routerLink="/register" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                            Register
-                        </a>
+                        <span class="email">
+                            {{getEmail()}}
+                        </span>
+                        <div class="menuContainer">
+                            <a routerLink="/myProfile" class="menuItem" (click)="closeMenu(userMenu)">
+                                My Profile
+                            </a>
+                            <a (click)="logout(); closeMenu(userMenu)" routerLink="/home" class="menuItem">
+                                Logout
+                            </a>
+                        </div>
+
                     </div>
+                    } @else {
+                    <div class="text-center">
+                        <div class="menuContainer">
+                            <a routerLink="/login" class="menuItem" (click)="closeMenu(userMenu)">
+                                Login
+                            </a>
+                            <a routerLink="/register" class="menuItem" (click)="closeMenu(userMenu)">
+                                Register
+                            </a>
+                        </div>
+                    </div>
+                    }
+
                 </div>
             </details>
         </div>

@@ -7,23 +7,42 @@
         </div>
     </div>
     <div class="container mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <!-- <h3 className="text-3xl font-bold tracking-tight text-gray-900 text-center mb-8">
-            {latestProducts.length > 0 ? "Latest Products!" : "No products yet.."}
-        </h3>
-        {latestProducts.length > 0 && (
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">
-            {latestProducts.map(product => (
-            <LatestProduct key={product._id} {...product} />
-            ))}
-        </div>
-        )} -->
+
+        @if (latestBooks.length > 0) {
         <h3 class="text-3xl font-bold tracking-tight text-gray-900 text-center mb-8">
             Latest Books!
         </h3>
         <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">
-            <app-latest-book />
-            <app-latest-book />
-            <app-latest-book />
+            @for (book of latestBooks; track $index) {
+            <div
+                class="transition-transform transform hover:scale-105 group bg-white bg-opacity-50 relative rounded-lg shadow-md overflow-hidden">
+                <a [routerLink]="['/books', book._id]">
+                    <div class="aspect-w-1 aspect-h-1 overflow-hidden lg:h-80 flex justify-center">
+                        <img class="object-cover h-full rounded-[15px]" src={{book.image}} />
+                    </div>
+                </a>
+                <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-medium pr-2 text-center text-white">
+                            {{book.title}}
+                        </h3>
+                    </div>
+                    <div class="mt-4 flex justify-center">
+                        <a>
+                            <button [routerLink]="['/books', book._id]" type="button"
+                                class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-transform transform hover:scale-105">
+                                Details
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
+        } @else {
+        <h3 class="text-3xl font-bold tracking-tight text-gray-900 text-center mb-8">
+            No products yet...
+        </h3>
+        }
     </div>
 </div>
