@@ -117,9 +117,12 @@
         </div>
         @if (inputRepass?.touched) {
         <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
           @if (inputRepass?.errors?.['required']) {
           <p>Repeat Password is required!</p>
-          } @if (inputRepass?.errors?.['passwordMismatch']) {
+          }
+          <!---->
+          @if (inputRepass?.errors?.['passwordMismatch']) {
           <p>Passwords must match!</p>
           }
         </div>
@@ -128,7 +131,8 @@
 
       <div>
         <button
-          class="flex w-full justify-center rounded-md bg-yellow-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600"
+          [disabled]="form.invalid"
+          [class]="form.invalid ? 'button-disabled' : 'button'"
         >
           Sign up
         </button>
