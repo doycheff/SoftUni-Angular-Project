@@ -7,6 +7,7 @@ import { BooksListComponent } from './book/books-list/books-list.component';
 import { CreateBookComponent } from './book/create-book/create-book.component';
 import { BookDetailsComponent } from './book/book-details/book-details.component';
 import { SearchComponent } from './search/search.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,8 +18,8 @@ export const routes: Routes = [
     // { path: 'profile', component: ProfileComponent },
 
     { path: 'books', component: BooksListComponent },
-    { path: 'create-book', component: CreateBookComponent },
-    { path: 'books/:id', component: BookDetailsComponent },
+    { path: 'create-book', component: CreateBookComponent, canActivate: [AuthGuard]  },
+    { path: 'books/:id', component: BookDetailsComponent, canActivate: [AuthGuard] },
     { path: 'search', component: SearchComponent },
 
 
