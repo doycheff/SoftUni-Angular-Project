@@ -31,6 +31,10 @@ export class UserService {
         localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
     }
 
+    register() {
+        
+    }
+
     logout() {
         this.user = null;
         localStorage.removeItem(this.USER_KEY);

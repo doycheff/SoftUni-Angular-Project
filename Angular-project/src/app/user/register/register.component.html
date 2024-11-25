@@ -1,66 +1,148 @@
-<div class="containerForm flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img alt="Your Company" src='books.png' class="rounded-md mx-auto h-16" />
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 px-6 ">
-            Create an account
-        </h2>
-    </div>
+<div
+  class="containerForm flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+>
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img alt="Your Company" src="books.png" class="rounded-md mx-auto h-16" />
+    <h2
+      class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 px-6"
+    >
+      Create an account
+    </h2>
+  </div>
 
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6">
-            <div>
-                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">
-                    Email address
-                </label>
-                <div class="mt-2">
-                    <input id="email" name="email" type="email"
-                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
-                        #inputEmail />
-                </div>
-            </div>
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="space-y-6" #form="ngForm" (ngSubmit)="register(form)">
+      <div>
+        <label
+          for="email"
+          class="block text-sm font-medium leading-6 text-gray-900"
+        >
+          Email address
+        </label>
+        <div class="mt-2">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
+            [class]="{
+              'border-red-500': inputEmail.invalid && inputEmail.touched,
+              'border-gray-300': !(inputEmail.invalid && inputEmail.touched)
+            }"
+            ngModel
+            #inputEmail="ngModel"
+            required
+            [appEmail]="domains"
+          />
+        </div>
+        @if (inputEmail?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
+          @if (inputEmail?.errors?.['required']) {
+          <p>Email is required!</p>
+          }
+          <!---->
+          @if (inputEmail?.errors?.['emailValidator']) {
+          <p>Email is not valid!</p>
+          }
+        </div>
+        }
+      </div>
 
-            <div>
-                <div class="flex items-center justify-between">
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">
-                        Password
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <input id="password" name="password" type="password"
-                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
-                        #inputPassword />
-                </div>
-            </div>
+      <div>
+        <div class="flex items-center justify-between">
+          <label
+            for="password"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Password
+          </label>
+        </div>
+        <div class="mt-2">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
+            [class]="{
+              'border-red-500': inputPassword.invalid && inputPassword.touched,
+              'border-gray-300': !(
+                inputPassword.invalid && inputPassword.touched
+              )
+            }"
+            ngModel
+            #inputPassword="ngModel"
+            required
+            minlength="5"
+          />
+        </div>
+        @if (inputPassword?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
+          @if (inputPassword?.errors?.['required']) {
+          <p>Password is required!</p>
+          }
+          <!---->
+          @if (inputPassword?.errors?.['minlength']) {
+          <p>Password must be at least 5 characters!</p>
+          }
+        </div>
+        }
+      </div>
 
-            <div>
-                <div class="flex items-center justify-between">
-                    <label for="repass" class="block text-sm font-medium leading-6 text-gray-900">
-                        Repeat Password
-                    </label>
-                </div>
-                <div class="mt-2">
-                    <input id="repass" name="repass" type="password"
-                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5" />
-                </div>
-            </div>
+      <div>
+        <div class="flex items-center justify-between">
+          <label
+            for="repass"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Repeat Password
+          </label>
+        </div>
+        <div class="mt-2">
+          <input
+            id="repass"
+            name="repass"
+            type="password"
+            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.5"
+            [class]="{
+              'border-red-500': inputRepass.invalid && inputRepass.touched,
+              'border-gray-300': !(inputRepass.invalid && inputRepass.touched)
+            }"
+            ngModel
+            #inputRepass="ngModel"
+            required
+            [appComparePassword]="inputPassword.value"
+          />
+        </div>
+        @if (inputRepass?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          @if (inputRepass?.errors?.['required']) {
+          <p>Repeat Password is required!</p>
+          } @if (inputRepass?.errors?.['passwordMismatch']) {
+          <p>Passwords must match!</p>
+          }
+        </div>
+        }
+      </div>
 
-            <div class="mb-4 text-sm text-red-500">
-                <!-- General error messages placeholder -->
-            </div>
+      <div>
+        <button
+          class="flex w-full justify-center rounded-md bg-yellow-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600"
+        >
+          Sign up
+        </button>
+      </div>
+    </form>
 
-            <div>
-                <button type="submit"
-                    class="flex w-full justify-center rounded-md bg-yellow-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-yellow-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600">
-                    Sign up
-                </button>
-            </div>
-        </form>
-
-        <p class="mt-10 text-center text-sm text-gray-500">
-            Already have an account?
-            <a routerLink="/login" class="font-semibold leading-6 text-yellow-600 hover:text-yellow-500">
-                Sign in
-            </a>
-        </p>
-    </div>
+    <p class="mt-10 text-center text-sm text-gray-500">
+      Already have an account?
+      <a
+        routerLink="/login"
+        class="font-semibold leading-6 text-yellow-600 hover:text-yellow-500"
+      >
+        Sign in
+      </a>
+    </p>
+  </div>
 </div>
