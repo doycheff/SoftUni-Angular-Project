@@ -1,0 +1,48 @@
+.button,
+.button-disabled{
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem;
+    text-align: center;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.button-red {
+    background: none;
+    border: 1px solid #dc2626;
+    color: #dc2626;
+}
+
+.button-red:hover {
+    background-color: #dc2626;
+    color: white;
+}
+
+.button-red:focus {
+    outline: 4px solid #dc2626;
+    outline-offset: 0;
+}
+
+.button-yellow {
+    background-color: #ca8a04;
+}
+
+.button-yellow:hover {
+    background-color: #a16207;
+}
+
+.button-yellow:focus {
+    outline: 4px solid #fde047;
+    outline-offset: 0;
+}
+
+.button-disabled {
+    background-color: grey;
+}

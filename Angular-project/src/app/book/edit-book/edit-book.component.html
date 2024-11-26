@@ -1,0 +1,179 @@
+<div class="flex items-center justify-center min-h-screen">
+  <form
+    style="background-color: antiquewhite"
+    class="w-full max-w-lg bg-gray-200 p-8 rounded-lg"
+    #form="ngForm"
+    (ngSubmit)="editBook(form)"
+  >
+    <div class="grid gap-6 mb-6">
+      <div>
+        <label for="title" class="block mb-2 text-sm font-medium text-gray-900">
+          Title
+        </label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [class]="{
+            'border-red-500': inputTitle.invalid && inputTitle.touched,
+            'border-gray-300': !(inputTitle.invalid && inputTitle.touched)
+          }"
+          ngModel
+          #inputTitle="ngModel"
+          required
+          minlength="5"
+        />
+        @if (inputTitle?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
+          @if (inputTitle?.errors?.['required']) {
+          <p>Title is required!</p>
+          }
+          <!---->
+          @if (inputTitle?.errors?.['minlength']) {
+          <p>Title must be at least 5 characters!</p>
+          }
+        </div>
+        }
+      </div>
+      <div>
+        <label for="genre" class="block mb-2 text-sm font-medium text-gray-900">
+          Genre
+        </label>
+        <select
+          id="genre"
+          name="genre"
+          class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [class]="{
+            'border-red-500': inputGenre.invalid && inputGenre.touched,
+            'border-gray-300': !(inputGenre.invalid && inputGenre.touched)
+          }"
+          ngModel
+          #inputGenre="ngModel"
+          required
+        >
+          <option value="">Select Genre</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Historical">Historical</option>
+          <option value="Drama">Drama</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Crime">Crime</option>
+        </select>
+        @if (inputGenre?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
+          @if (inputGenre?.errors?.['required']) {
+          <p>Genre is required!</p>
+          }
+        </div>
+        }
+      </div>
+      <div class="relative">
+        <label for="price" class="block mb-2 text-sm font-medium text-gray-900">
+          Price
+        </label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [class]="{
+            'border-red-500': inputPrice.invalid && inputPrice.touched,
+            'border-gray-300': !(inputPrice.invalid && inputPrice.touched)
+          }"
+          ngModel
+          #inputPrice="ngModel"
+          required
+        />
+        @if (inputPrice?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
+          @if (inputPrice?.errors?.['required']) {
+          <p>Price is required!</p>
+          }
+        </div>
+        }
+      </div>
+      <div>
+        <label
+          for="description"
+          class="block mb-2 text-sm font-medium text-gray-900"
+        >
+          Description
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [class]="{
+            'border-red-500': inputDesc.invalid && inputDesc.touched,
+            'border-gray-300': !(inputDesc.invalid && inputDesc.touched)
+          }"
+          ngModel
+          #inputDesc="ngModel"
+          required
+          minlength="10"
+        >
+        </textarea>
+        @if (inputDesc?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
+          @if (inputDesc?.errors?.['required']) {
+          <p>Description is required!</p>
+          }
+          <!---->
+          @if (inputDesc?.errors?.['minlength']) {
+          <p>Description must be at least 10 characters!</p>
+          }
+        </div>
+        }
+      </div>
+      <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="image">
+          Image URL
+        </label>
+        <input
+          class="bg-white border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          id="image"
+          type="text"
+          name="image"
+          [class]="{
+            'border-red-500': inputImageUrl.invalid && inputImageUrl.touched,
+            'border-gray-300': !(inputImageUrl.invalid && inputImageUrl.touched)
+          }"
+          ngModel
+          #inputImageUrl="ngModel"
+          required
+        />
+        @if (inputImageUrl?.touched) {
+        <div class="text-red-500 text-xs italic font-bold mt-1">
+          <!---->
+          @if (inputImageUrl?.errors?.['required']) {
+          <p>Image URL is required!</p>
+          }
+        </div>
+        }
+      </div>
+    </div>
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <button
+        class="button button-red button-sm-auto"
+        (click)="onCancel($event)"
+      >
+        Cancel
+      </button>
+      <button
+        [disabled]="form.invalid"
+        [class]="
+          form.invalid
+            ? 'button-disabled'
+            : 'button button-yellow button-sm-auto'
+        "
+      >
+        Edit
+      </button>
+    </div>
+  </form>
+</div>
