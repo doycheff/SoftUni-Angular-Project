@@ -8,18 +8,21 @@ import { CreateBookComponent } from './book/create-book/create-book.component';
 import { BookDetailsComponent } from './book/book-details/book-details.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './guards/auth.guard';
+import { EditBookComponent } from './book/edit-book/edit-book.component';
+import { LoggedInGuard } from './guards/logged-in.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
 
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard]},
+    { path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard]},
     // { path: 'profile', component: ProfileComponent },
 
     { path: 'books', component: BooksListComponent },
-    { path: 'create-book', component: CreateBookComponent, canActivate: [AuthGuard]  },
-    { path: 'books/:id', component: BookDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'create-book', component: CreateBookComponent, canActivate: [AuthGuard] },
+    { path: 'books/:id', component: BookDetailsComponent},
+    { path: 'edit/:id', component: EditBookComponent, canActivate: [AuthGuard] },
     { path: 'search', component: SearchComponent },
 
 
