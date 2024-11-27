@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../types/book';
-import { ApiService } from '../../api.service';
 import { BooksListItemComponent } from "./books-list-item/books-list-item.component";
+import { ApiService } from '../../core/services/api.service';
 
 @Component({
   selector: 'app-books-list',

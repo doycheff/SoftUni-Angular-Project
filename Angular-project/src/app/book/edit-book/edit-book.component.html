@@ -19,7 +19,7 @@
             'border-red-500': inputTitle.invalid && inputTitle.touched,
             'border-gray-300': !(inputTitle.invalid && inputTitle.touched)
           }"
-          ngModel
+          [(ngModel)]="book.title"
           #inputTitle="ngModel"
           required
           minlength="5"
@@ -49,7 +49,7 @@
             'border-red-500': inputGenre.invalid && inputGenre.touched,
             'border-gray-300': !(inputGenre.invalid && inputGenre.touched)
           }"
-          ngModel
+          [(ngModel)]="book.genre"
           #inputGenre="ngModel"
           required
         >
@@ -83,7 +83,7 @@
             'border-red-500': inputPrice.invalid && inputPrice.touched,
             'border-gray-300': !(inputPrice.invalid && inputPrice.touched)
           }"
-          ngModel
+          [(ngModel)]="book.price"
           #inputPrice="ngModel"
           required
         />
@@ -111,7 +111,7 @@
             'border-red-500': inputDesc.invalid && inputDesc.touched,
             'border-gray-300': !(inputDesc.invalid && inputDesc.touched)
           }"
-          ngModel
+          [(ngModel)]="book.description"
           #inputDesc="ngModel"
           required
           minlength="10"
@@ -143,7 +143,7 @@
             'border-red-500': inputImageUrl.invalid && inputImageUrl.touched,
             'border-gray-300': !(inputImageUrl.invalid && inputImageUrl.touched)
           }"
-          ngModel
+          [(ngModel)]="book.image"
           #inputImageUrl="ngModel"
           required
         />

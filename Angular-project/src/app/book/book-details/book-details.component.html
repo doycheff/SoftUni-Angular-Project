@@ -1,35 +1,78 @@
 <div class="flex justify-center items-center min-h-screen">
-    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-        <div class="px-4 sm:px-0 text-center">
-            <h3 class="text-2xl font-semibold leading-7 text-gray-900">{{book.title}}</h3>
-        </div>
-        <div class="mt-6 border-t border-gray-200">
-            <dl class="divide-y divide-gray-200">
-                <div class="py-6 flex justify-center">
-                    <img src={{book.image}}
-                        class="rounded-lg shadow-md object-cover h-60 w-100" />
-                </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-2 text-center sm:text-center">
-                    <dt class="text-sm font-medium leading-6 text-gray-900">Genre:</dt>
-                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{book.genre}}</dd>
-                </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-2 text-center sm:text-center">
-                    <dt class="text-sm font-medium leading-6 text-gray-900">Price:</dt>
-                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">${{book.price}}</dd>
-                </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-2 text-center sm:text-center">
-                    <dt class="text-sm font-medium leading-6 text-gray-900">Description:</dt>
-                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                        {{book.description}}
-                    </dd>
-
-                </div>
-                <div class="px-4 py-6 sm:grid sm:gap-4 sm:px-2 text-center">
-                    <p class="text-md font-medium leading-6 text-green-600 mt-4">
-                        Buyer: {{'user@example.com'}}
-                    </p>
-                </div>
-            </dl>
-        </div>
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
+    <div class="px-4 sm:px-0 text-center">
+      <h3 class="text-2xl font-semibold leading-7 text-gray-900">
+        {{ book.title }}
+      </h3>
     </div>
+    <div class="mt-6 border-t border-gray-200">
+      <dl class="divide-y divide-gray-200">
+        <div class="py-6 flex justify-center">
+          <img
+            src="{{ book.image }}"
+            class="rounded-lg shadow-md object-cover h-60 w-100"
+          />
+        </div>
+        <div
+          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-2 text-center sm:text-center"
+        >
+          <dt class="text-sm font-medium leading-6 text-gray-900">Genre:</dt>
+          <dd
+            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+          >
+            {{ book.genre }}
+          </dd>
+        </div>
+        <div
+          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-2 text-center sm:text-center"
+        >
+          <dt class="text-sm font-medium leading-6 text-gray-900">Price:</dt>
+          <dd
+            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+          >
+            ${{ book.price }}
+          </dd>
+        </div>
+        <div
+          class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-2 text-center sm:text-center"
+        >
+          <dt class="text-sm font-medium leading-6 text-gray-900">
+            Description:
+          </dt>
+          <dd
+            class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+          >
+            {{ book.description }}
+          </dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:gap-4 sm:px-2 text-center">
+          <p class="text-md font-medium leading-6 text-green-600 mt-4">
+            Buyer: {{ "user@example.com" }}
+          </p>
+        </div>
+      </dl>
+      <div class="mt-4 flex justify-center space-x-4">
+        <button
+          (click)="deleteHandler(book._id)"
+          class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 transition-transform transform hover:scale-105"
+        >
+          Delete
+        </button>
+        <a>
+          <button
+            [routerLink]="['/edit', book._id]"
+            type="button"
+            class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition-transform transform hover:scale-105"
+          >
+            Edit
+          </button>
+        </a>
+        <button
+          class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 transition-transform transform hover:scale-105"
+        >
+          Buy
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
