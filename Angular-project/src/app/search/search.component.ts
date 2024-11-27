@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../api.service';
 import { Book } from '../types/book';
 import { BooksListItemComponent } from "../book/books-list/books-list-item/books-list-item.component";
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../core/services/api.service';
 
 @Component({
     selector: 'app-search',

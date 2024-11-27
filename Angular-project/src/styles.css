@@ -3,19 +3,26 @@
 @tailwind utilities;
 
 body {
-    position: relative;
+    /* position: relative; */
     background-image: url('/background.jpg');
-    background-position: center;
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html,
+
+/* html,
 body {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    /* Ensure no default spacing */
+} */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 main {

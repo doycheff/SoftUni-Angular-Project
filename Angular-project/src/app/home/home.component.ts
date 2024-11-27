@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Book } from '../types/book';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../api.service';
+import { ApiService } from '../core/services/api.service';
 
 @Component({
   selector: 'app-home',

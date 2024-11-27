@@ -6,7 +6,9 @@ export interface User {
 }
 
 export interface UserForAuth {
+    id: string;
     email: string;
     password: string;
-    id: string;
+    repass: string,
+    accessToken?: string;
 }
