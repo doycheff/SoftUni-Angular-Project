@@ -13,6 +13,7 @@ import { ApiService } from '../../core/services/api.service';
 })
 export class EditBookComponent implements OnInit {
   book = {} as Book;
+  generalError: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +36,13 @@ export class EditBookComponent implements OnInit {
 
     const id = this.route.snapshot.params['id'];
 
-    this.apiService.updateBook(id, this.book).subscribe(() => {
-      this.router.navigate([`/books/${id}`]);
+    this.apiService.updateBook(id, this.book).subscribe({
+      next: () => {
+        this.router.navigate([`/books/${id}`]);
+      },
+      error: (err) => {
+        this.generalError = err.error.message;
+      }
     });
   }
 

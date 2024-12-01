@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { UserService } from '../core/services/user.service';
+import { UserService } from '../user/user.service';
 
 export const LoggedInGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,

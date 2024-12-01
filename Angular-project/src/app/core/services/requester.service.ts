@@ -10,7 +10,7 @@ export class RequesterService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   requester<T>(method: string, url: string, data?: any): Observable<T> {
-    const accessToken = this.authService.getAccessToken();
+    const accessToken = this.authService.accessToken;
 
     let headers = new HttpHeaders();
     if (accessToken) {
