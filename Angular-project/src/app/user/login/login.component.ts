@@ -27,7 +27,7 @@ export class LoginComponent {
 
     this.userService.login(email, password).subscribe({
       next: () => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/books']);
       },
       error: (err) => {
         this.generalError = err.error.message;

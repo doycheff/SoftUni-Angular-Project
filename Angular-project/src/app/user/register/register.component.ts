@@ -28,7 +28,7 @@ export class RegisterComponent {
 
     this.userService.register(email, password).subscribe({
       next: (user) => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/books']);
       },
       error: (err) => {
         this.generalError = err.error.message;

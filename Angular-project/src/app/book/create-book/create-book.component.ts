@@ -27,7 +27,7 @@ export class CreateBookComponent {
       .createBook(title, genre, price, description, image)
       .subscribe({
         next: () => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/books']);
         },
         error: (err) => {
           console.error('Error creating book:', err);
