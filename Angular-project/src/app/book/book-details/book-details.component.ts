@@ -7,11 +7,13 @@ import { BuyerEmailService } from '../buyer-email.service';
 import { HasBoughtService } from '../has-bought.service';
 import { NgIf } from '@angular/common';
 import { EmailNamePipe } from '../../core/pipes/email-name.pipe';
+import { ModalComponent } from '../../modal-dialog/modal-dialog.component';
+import { BoldTitlePipe } from '../../core/pipes/bold-title.pipe';
 
 @Component({
   selector: 'app-book-details',
   standalone: true,
-  imports: [RouterLink, NgIf, EmailNamePipe],
+  imports: [RouterLink, NgIf, EmailNamePipe, ModalComponent, BoldTitlePipe],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.css',
 })
@@ -21,6 +23,10 @@ export class BookDetailsComponent implements OnInit {
   buyerEmail: string = '';
   hasBought: boolean = false;
   isAuthenticated: boolean = false;
+
+  isDeleteModalOpen = false;
+  isBuyModalOpen: boolean = false;
+  isSuccessModalOpen = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,8 +38,8 @@ export class BookDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated; 
-    
+    this.isAuthenticated = this.authService.isAuthenticated;
+
     const id = this.route.snapshot.params['id'];
 
     this.apiService.getOneBook(id).subscribe((book) => {
@@ -48,6 +54,31 @@ export class BookDetailsComponent implements OnInit {
     });
   }
 
+  showDeleteModal(): void {
+    this.isDeleteModalOpen = true;
+  }
+
+  hideDeleteModal(): void {
+    this.isDeleteModalOpen = false;
+  }
+
+  showBuyModal(): void {
+    this.isBuyModalOpen = true;
+  }
+
+  hideBuyModal(): void {
+    this.isBuyModalOpen = false;
+  }
+
+  showSuccessModal(): void {
+    this.isSuccessModalOpen = true;
+  }
+
+  hideSuccessModal(): void {
+    this.isSuccessModalOpen = false;
+    this.router.navigate(['/books']);
+  }
+
   async buyBook(): Promise<void> {
     try {
       const email = this.authService.email ?? '';
@@ -58,6 +89,8 @@ export class BookDetailsComponent implements OnInit {
 
       this.buyerEmail = email;
       this.hasBought = true;
+
+      this.isBuyModalOpen = false;
     } catch (error) {
       console.error(error);
     }
@@ -67,7 +100,7 @@ export class BookDetailsComponent implements OnInit {
     this.apiService.deleteBook(id).subscribe({
       next: () => {
         this.router.navigate(['/books']);
-      }
+      },
     });
   }
 }
