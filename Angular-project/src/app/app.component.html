@@ -1,8 +1,8 @@
-<div class="flex flex-col min-h-screen">
+<div [@routeAnimations]="prepareRoute(outlet)" class="mainContainer flex flex-col">
     <app-navbar></app-navbar>
 
     <div class="flex-grow">
-        <router-outlet></router-outlet>
+        <router-outlet #outlet="outlet"></router-outlet>
     </div>
 
     <app-footer></app-footer>

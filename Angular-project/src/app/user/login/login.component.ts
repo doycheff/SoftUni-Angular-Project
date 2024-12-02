@@ -30,7 +30,7 @@ export class LoginComponent {
         this.router.navigate(['/books']);
       },
       error: (err) => {
-        this.generalError = err.error.message;
+        this.generalError = 'Email or password don\'t match';
       },
     });
   }
