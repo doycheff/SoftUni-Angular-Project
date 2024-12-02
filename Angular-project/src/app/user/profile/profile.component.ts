@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Book } from '../../types/book';
 import { ApiService } from '../../core/services/api.service';
 import { AuthService } from '../../core/services/auth.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -25,11 +26,18 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     if (this.userId) {
-      this.apiService.getUserBooks(this.userId).subscribe({
-        next: (books: Book[]) => {
-          this.books = books;
-        },
-      });
+      this.apiService
+        .getUserBooks(this.userId)
+        .pipe(
+          map((books) =>
+            books.map((book) => ({ ...book, title: book.title.toUpperCase() }))
+          )
+        )
+        .subscribe({
+          next: (books: Book[]) => {
+            this.books = books;
+          },
+        });
     }
   }
 
