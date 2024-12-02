@@ -22,8 +22,6 @@ export class SearchComponent {
 
         this.apiService.searchBooks(search).subscribe(
             (books) => {
-                console.log(books);
-
                 this.books = books;
             });
     }
