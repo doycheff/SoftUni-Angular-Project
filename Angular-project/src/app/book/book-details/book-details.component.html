@@ -84,7 +84,7 @@
   <app-modal
     [isOpen]="isDeleteModalOpen"
     [title]="'Confirm Delete'"
-    [message]="'Are you sure you want to delete ' + (book.title | boldTitle) + '?'"
+    [message]="'Are you sure you want to delete ' + book.title + '?'"
     [confirmText]="'Delete'"
     [cancelText]="'Cancel'"
     [buttonColor]="'bg-red-600 hover:bg-red-700'"
@@ -95,7 +95,7 @@
   <app-modal
     [isOpen]="isBuyModalOpen"
     [title]="'Confirm Purchase'"
-    [message]="'Are you sure you want to buy ' + (book.title | boldTitle) + '?'"
+    [message]="'Are you sure you want to buy ' + book.title + '?'"
     [confirmText]="'Buy'"
     [cancelText]="'Cancel'"
     [buttonColor]="'bg-green-600 hover:bg-green-700'"

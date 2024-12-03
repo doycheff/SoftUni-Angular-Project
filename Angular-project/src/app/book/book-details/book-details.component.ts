@@ -8,12 +8,12 @@ import { HasBoughtService } from '../has-bought.service';
 import { NgIf } from '@angular/common';
 import { EmailNamePipe } from '../../core/pipes/email-name.pipe';
 import { ModalComponent } from '../../modal-dialog/modal-dialog.component';
-import { BoldTitlePipe } from '../../core/pipes/bold-title.pipe';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-book-details',
   standalone: true,
-  imports: [RouterLink, NgIf, EmailNamePipe, ModalComponent, BoldTitlePipe],
+  imports: [RouterLink, NgIf, EmailNamePipe, ModalComponent],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.css',
 })
@@ -42,16 +42,19 @@ export class BookDetailsComponent implements OnInit {
 
     const id = this.route.snapshot.params['id'];
 
-    this.apiService.getOneBook(id).subscribe((book) => {
-      this.book = book;
+    this.apiService
+      .getOneBook(id)
+      .pipe(map((book) => ({ ...book, title: book.title.toUpperCase() })))
+      .subscribe((book) => {
+        this.book = book;
 
-      const currentUserId = this.authService.userId;
-      this.isOwner = book._ownerId === currentUserId;
+        const currentUserId = this.authService.userId;
+        this.isOwner = book._ownerId === currentUserId;
 
-      const email = this.buyerEmailService.getBuyerEmail(id);
-      this.buyerEmail = email ?? '';
-      this.hasBought = this.hasBoughtService.getHasBoughtStatus(id);
-    });
+        const email = this.buyerEmailService.getBuyerEmail(id);
+        this.buyerEmail = email ?? '';
+        this.hasBought = this.hasBoughtService.getHasBoughtStatus(id);
+      });
   }
 
   showDeleteModal(): void {
