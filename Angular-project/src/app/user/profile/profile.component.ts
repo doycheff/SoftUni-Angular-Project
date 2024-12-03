@@ -4,17 +4,21 @@ import { Book } from '../../types/book';
 import { ApiService } from '../../core/services/api.service';
 import { AuthService } from '../../core/services/auth.service';
 import { map } from 'rxjs';
+import { ModalComponent } from '../../modal-dialog/modal-dialog.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ModalComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
   books: Book[] = [];
   userId: string | undefined;
+  selectedBookId: string | null = null;
+
+  isDeleteModalOpen = false;
 
   constructor(
     private apiService: ApiService,
@@ -41,14 +45,28 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  deleteHandler(id: string) {
-    this.apiService.deleteBook(id).subscribe({
-      next: () => {
-        this.router.navigate(['/books']);
-      },
-      error: (err) => {
-        console.error('Error deleting book:', err);
-      },
-    });
+  showDeleteModal(bookId: string): void {
+    this.selectedBookId = bookId;
+    this.isDeleteModalOpen = true;
+  }
+
+  hideDeleteModal(): void {
+    this.isDeleteModalOpen = false;
+  }
+
+  deleteHandler(): void {
+    if (this.selectedBookId) {
+      this.apiService.deleteBook(this.selectedBookId).subscribe({
+        next: () => {
+          this.books = this.books.filter(
+            (book) => book._id !== this.selectedBookId
+          );
+          this.hideDeleteModal();
+        },
+        error: (err) => {
+          console.error('Error deleting book:', err);
+        },
+      });
+    }
   }
 }
