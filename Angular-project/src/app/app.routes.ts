@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { EditBookComponent } from './book/edit-book/edit-book.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { ProfileComponent } from './user/profile/profile.component';
+import { BookOwnerGuard } from './guards/book-owner.guard';
 
 export const routes: Routes = [
   {
@@ -57,7 +58,7 @@ export const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditBookComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, BookOwnerGuard],
     data: { animation: 'EditBookPage' },
   },
   {
