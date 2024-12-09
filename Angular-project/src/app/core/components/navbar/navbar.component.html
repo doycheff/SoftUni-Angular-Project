@@ -51,9 +51,11 @@
                         </span>
                         <div class="menuContainer">
                             <a routerLink="/profile" class="menuItem" (click)="closeMenu(userMenu)">
+                                <i class="fa-solid fa-user"></i>
                                 My Profile
                             </a>
                             <a (click)="logout(); closeMenu(userMenu)" routerLink="/home" class="menuItem">
+                                <i class="fa-solid fa-right-from-bracket"></i>
                                 Logout
                             </a>
                         </div>

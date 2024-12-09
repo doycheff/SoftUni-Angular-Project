@@ -1,7 +1,6 @@
 .email {
     font-size: 1rem;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
     color: #ffffff;
     background: linear-gradient(135deg, #afafaf 0%, #8b8b8b 100%);
     padding: 0.5rem 1rem;
@@ -12,11 +11,12 @@
 }
 
 .menuContainer {
-    font-family: 'Poppins', sans-serif;
     background: #ffffff;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
 }
 
 .menuItem {
@@ -30,7 +30,7 @@
 }
 
 .menuItem:hover {
-    background: #c5e7f2;
+    background: #ca8a04;
     color: #ffffff;
     border-radius: 0.5rem;
 }
