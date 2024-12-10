@@ -1,9 +1,13 @@
-<div [@routeAnimations]="prepareRoute(outlet)" class="mainContainer flex flex-col">
-    <app-navbar></app-navbar>
+<div
+  [@routeAnimations]="prepareRoute(outlet)"
+  class="mainContainer flex flex-col"
+>
+  <app-navbar></app-navbar>
+  <app-snow></app-snow>
 
-    <div class="flex-grow">
-        <router-outlet #outlet="outlet"></router-outlet>
-    </div>
+  <div class="flex-grow">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 
-    <app-footer></app-footer>
+  <app-footer></app-footer>
 </div>

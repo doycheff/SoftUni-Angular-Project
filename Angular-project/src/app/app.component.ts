@@ -9,11 +9,12 @@ import {
   style,
   animate,
 } from '@angular/animations';
+import { SnowComponent } from './snow/snow.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, SnowComponent],
   animations: [
     trigger('routeAnimations', [
       transition('* <=> *', [
