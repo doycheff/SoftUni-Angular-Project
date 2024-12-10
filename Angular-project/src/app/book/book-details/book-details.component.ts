@@ -82,21 +82,23 @@ export class BookDetailsComponent implements OnInit {
     this.router.navigate(['/books']);
   }
 
-  async buyBook(): Promise<void> {
-    try {
-      const email = this.authService.email ?? '';
-      const bookId = this.book._id;
+  buyBook(): void {
+    const email = this.authService.email ?? '';
+    const bookId = this.book._id;
 
-      this.buyerEmailService.updateBuyerEmail(bookId, email);
-      this.hasBoughtService.updateHasBoughtStatus(bookId, true);
-
-      this.buyerEmail = email;
-      this.hasBought = true;
-
-      this.isBuyModalOpen = false;
-    } catch (error) {
-      console.error(error);
-    }
+    this.buyerEmailService.updateBuyerEmail(bookId, email).subscribe({
+      next: () => {
+        this.hasBoughtService.updateHasBoughtStatus(bookId, true).subscribe({
+          next: () => {
+            this.buyerEmail = email;
+            this.hasBought = true;
+            this.isBuyModalOpen = false;
+          },
+          error: (error) => console.error(error),
+        });
+      },
+      error: (error) => console.error(error),
+    });
   }
 
   deleteHandler(id: string): void {

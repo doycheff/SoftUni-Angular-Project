@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,13 +7,12 @@ import { Injectable } from '@angular/core';
 export class BuyerEmailService {
   constructor() {}
 
-  // Update the buyer email for a specific book
-  updateBuyerEmail(bookId: string, email: string): void {
+  updateBuyerEmail(bookId: string, email: string): Observable<void> {
     localStorage.setItem(`buyerEmail-${bookId}`, email);
+    return of(undefined);
   }
 
-  // Retrieve the buyer email for a specific book
   getBuyerEmail(bookId: string): string | null {
-    return localStorage.getItem(`buyerEmail-${bookId}`); // Always returns a string or null
+    return localStorage.getItem(`buyerEmail-${bookId}`);
   }
 }
