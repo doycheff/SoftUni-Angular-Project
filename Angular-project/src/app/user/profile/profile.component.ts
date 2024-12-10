@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Book } from '../../types/book';
 import { ApiService } from '../../core/services/api.service';
-import { AuthService } from '../../core/services/auth.service';
 import { map } from 'rxjs';
 import { ModalComponent } from '../../modal-dialog/modal-dialog.component';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-profile',

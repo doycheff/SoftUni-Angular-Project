@@ -1,6 +1,14 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  ViewChild,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { UserService } from '../../../user/user.service';
+import { Subscription } from 'rxjs';
+import { UserForAuth } from '../../../types/user';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,9 +16,9 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
+  styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
   @ViewChild('userMenu') userMenu!: ElementRef<HTMLDetailsElement>;
 
   navigation = [
@@ -20,18 +28,36 @@ export class NavbarComponent {
     { name: 'Search', href: '/search' },
   ];
 
-  constructor(private userService: UserService, private router: Router, private authService: AuthService) {}
+  user: UserForAuth | null = null;
+  userSubscription: Subscription | null = null;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.userSubscription = this.authService.userObservable.subscribe((user) => {
+        this.user = user;
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
 
   get isLoggedIn(): boolean {
-    return this.userService.isLogged;
+    return this.authService.isAuthenticated;
   }
 
   getEmail(): string {
-    return this.userService.user?.email || '';
+    return this.user?.email || '';
   }
 
   logout() {
-    this.userService.logout();
+    this.authService.logout();
     this.router.navigate(['/home']);
   }
 

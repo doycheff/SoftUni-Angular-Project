@@ -1,4 +1,9 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { UserForAuth } from '../../types/user';
+
+const BASE_URL = 'http://localhost:3030/users';
 
 @Injectable({
   providedIn: 'root',
@@ -6,17 +11,22 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private readonly AUTH_KEY = 'auth';
 
-  private authState: {
-    _id?: string;
-    email?: string;
-    accessToken?: string;
-  } | null = null;
+  private authState: UserForAuth | null = null;
+  private user$$ = new BehaviorSubject<UserForAuth | null>(null);
+  private user$ = this.user$$.asObservable();
 
-  constructor() {
+  constructor(private http: HttpClient) {
     const storedAuth = localStorage.getItem(this.AUTH_KEY);
-    this.authState = storedAuth ? JSON.parse(storedAuth) : null;
+    if (storedAuth) {
+      try {
+        const parsedAuth = JSON.parse(storedAuth) as UserForAuth;
+        this.authState = parsedAuth;
+        this.user$$.next(parsedAuth);
+      } catch {
+        this.authState = null;
+      }
+    }
   }
-
 
   get userId(): string | undefined {
     return this.authState?._id;
@@ -31,18 +41,47 @@ export class AuthService {
   }
 
   get isAuthenticated(): boolean {
-    return !!this.authState?.email;
+    return !!this.authState?.accessToken;
   }
 
-  changeAuthState(
-    newAuthState: { userId: string; email: string; accessToken: string } | null
-  ): void {
+  get userObservable() {
+    return this.user$;
+  }
+
+  changeAuthState(newAuthState: UserForAuth | null): void {
     this.authState = newAuthState;
 
     if (newAuthState) {
-      localStorage.setItem(this.AUTH_KEY, JSON.stringify(newAuthState));
+      const { password, ...stateToStore } = newAuthState;
+      localStorage.setItem(this.AUTH_KEY, JSON.stringify(stateToStore));
+      this.user$$.next(newAuthState);
     } else {
       localStorage.removeItem(this.AUTH_KEY);
+      this.user$$.next(null);
     }
+  }
+
+  login(email: string, password: string) {
+    return this.http
+      .post<UserForAuth>(`${BASE_URL}/login`, { email, password })
+      .pipe(
+        tap((user) => {
+          this.changeAuthState(user);
+        })
+      );
+  }
+
+  register(email: string, password: string) {
+    return this.http
+      .post<UserForAuth>(`${BASE_URL}/register`, { email, password })
+      .pipe(
+        tap((user) => {
+          this.changeAuthState(user);
+        })
+      );
+  }
+
+  logout(): void {
+    this.changeAuthState(null);
   }
 }

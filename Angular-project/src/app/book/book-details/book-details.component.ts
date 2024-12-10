@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../../types/book';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
-import { AuthService } from '../../core/services/auth.service';
 import { BuyerEmailService } from '../buyer-email.service';
 import { HasBoughtService } from '../has-bought.service';
 import { NgIf } from '@angular/common';
 import { EmailNamePipe } from '../../core/pipes/email-name.pipe';
 import { ModalComponent } from '../../modal-dialog/modal-dialog.component';
 import { map } from 'rxjs';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-book-details',
@@ -25,7 +25,7 @@ export class BookDetailsComponent implements OnInit {
   isAuthenticated: boolean = false;
 
   isDeleteModalOpen = false;
-  isBuyModalOpen: boolean = false;
+  isBuyModalOpen = false;
   isSuccessModalOpen = false;
 
   constructor(
@@ -38,8 +38,6 @@ export class BookDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated;
-
     const id = this.route.snapshot.params['id'];
 
     this.apiService
@@ -48,12 +46,18 @@ export class BookDetailsComponent implements OnInit {
       .subscribe((book) => {
         this.book = book;
 
-        const currentUserId = this.authService.userId;
-        this.isOwner = book._ownerId === currentUserId;
+        this.authService.userObservable.subscribe((user) => {
+          this.isAuthenticated = !!user;
 
-        const email = this.buyerEmailService.getBuyerEmail(id);
-        this.buyerEmail = email ?? '';
-        this.hasBought = this.hasBoughtService.getHasBoughtStatus(id);
+          if (user) {
+            const currentUserId = user._id;
+            this.isOwner = book._ownerId === currentUserId;
+          } else {
+          }
+
+          this.buyerEmail = this.buyerEmailService.getBuyerEmail(id) ?? '';
+          this.hasBought = this.hasBoughtService.getHasBoughtStatus(id);
+        });
       });
   }
 

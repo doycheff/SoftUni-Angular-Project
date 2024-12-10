@@ -1,12 +1,8 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivateFn,
-  Router,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 import { ApiService } from '../core/services/api.service';
-import { AuthService } from '../core/services/auth.service';
 import { inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { AuthService } from '../core/services/auth.service';
 
 export const BookOwnerGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot
