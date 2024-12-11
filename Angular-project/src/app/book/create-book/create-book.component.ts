@@ -11,10 +11,7 @@ import { ApiService } from '../../core/services/api.service';
   styleUrl: './create-book.component.css',
 })
 export class CreateBookComponent {
-  constructor(
-    private apiService: ApiService,
-    private router: Router
-  ) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   addBook(form: NgForm) {
     if (form.invalid) {
@@ -26,8 +23,8 @@ export class CreateBookComponent {
     this.apiService
       .createBook(title, genre, price, description, image)
       .subscribe({
-        next: () => {
-          this.router.navigate(['/books']);
+        next: (book) => {
+          this.router.navigate([`/books/${book._id}`]);
         },
         error: (err) => {
           console.error('Error creating book:', err);
